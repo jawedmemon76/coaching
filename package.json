@@ -5,7 +5,7 @@
   "description": "teacher.ac.pk - Comprehensive exam-focused digital learning platform for Pakistan",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jawedmemon76/teacher.git"
+    "url": "https://github.com/jawedmemon76/coaching.git"
   },
   "scripts": {
     "dev": "pnpm run --parallel dev",

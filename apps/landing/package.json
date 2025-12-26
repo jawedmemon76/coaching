@@ -5,8 +5,8 @@
   "description": "Public landing/marketing site for teacher.ac.pk",
   "scripts": {
     "dev": "next dev --port 3000",
-    "build": "next build",
-    "start": "next start --port 3000",
+    "build": "next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/ 2>/dev/null || true",
+    "start": "node .next/standalone/server.js",
     "lint": "next lint",
     "clean": "rimraf .next"
   },

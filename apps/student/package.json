@@ -13,10 +13,7 @@
   "dependencies": {
     "next": "^15.1.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@teacher/types": "workspace:*",
-    "@teacher/utils": "workspace:*",
-    "@teacher/ui": "workspace:*"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

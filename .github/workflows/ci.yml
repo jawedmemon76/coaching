@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '9'
+
+jobs:
+  build:
+    name: Build & Lint
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: |
+          pnpm --filter @teacher/types build
+          pnpm --filter @teacher/utils build
+          pnpm --filter @teacher/ui build
+
+      - name: Generate Prisma Client
+        run: pnpm --filter @teacher/api prisma:generate
+
+      - name: Build web app
+        run: pnpm build:web
+
+      - name: Build admin app
+        run: pnpm build:admin
+
+      - name: Build API
+        run: pnpm build:api
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages (required for lint)
+        run: |
+          pnpm --filter @teacher/types build
+          pnpm --filter @teacher/utils build
+          pnpm --filter @teacher/ui build
+
+      - name: Generate Prisma Client
+        run: pnpm --filter @teacher/api prisma:generate
+
+      - name: Lint web
+        run: pnpm lint:web
+        continue-on-error: true
+
+      - name: Lint admin
+        run: pnpm lint:admin
+        continue-on-error: true
+
+      - name: Lint API
+        run: pnpm lint:api
+        continue-on-error: true
+

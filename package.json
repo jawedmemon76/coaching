@@ -1,0 +1,46 @@
+{
+  "name": "teacher",
+  "version": "0.1.0",
+  "private": true,
+  "description": "teacher.ac.pk - Comprehensive exam-focused digital learning platform for Pakistan",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jawedmemon76/teacher.git"
+  },
+  "scripts": {
+    "dev": "pnpm run --parallel dev",
+    "dev:web": "pnpm --filter @teacher/web dev",
+    "dev:admin": "pnpm --filter @teacher/admin dev",
+    "dev:api": "pnpm --filter @teacher/api dev",
+    "build": "pnpm run --parallel build",
+    "build:web": "pnpm --filter @teacher/web build",
+    "build:admin": "pnpm --filter @teacher/admin build",
+    "build:api": "pnpm --filter @teacher/api build",
+    "start:web": "pnpm --filter @teacher/web start",
+    "start:admin": "pnpm --filter @teacher/admin start",
+    "start:api": "pnpm --filter @teacher/api start",
+    "lint": "pnpm run --parallel lint",
+    "lint:web": "pnpm --filter @teacher/web lint",
+    "lint:admin": "pnpm --filter @teacher/admin lint",
+    "lint:api": "pnpm --filter @teacher/api lint",
+    "clean": "pnpm run --parallel clean",
+    "prisma:generate": "pnpm --filter @teacher/api prisma:generate",
+    "prisma:migrate": "pnpm --filter @teacher/api prisma:migrate",
+    "prisma:studio": "pnpm --filter @teacher/api prisma:studio"
+  },
+  "keywords": [
+    "education",
+    "lms",
+    "exam-prep",
+    "pakistan",
+    "teacher.ac.pk"
+  ],
+  "author": "teacher.ac.pk",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.15.1"
+}
+
